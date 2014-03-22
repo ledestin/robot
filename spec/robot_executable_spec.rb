@@ -7,10 +7,10 @@ describe 'robot executable' do
       MOVE
       REPORT
     EOF
-    output = <<-EOF
-      0,1,NORTH
-    EOF
+    output = <<EOF
+0,1,NORTH
+EOF
 
-    expect(Open3.capture2e('./robot', input)).to eq output
+    expect(Open3.capture2e('./robot', input).first).to eq output
   end
 end
