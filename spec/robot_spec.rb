@@ -8,9 +8,19 @@ describe 'robot executable' do
       PLACE 0,0,NORTH
       MOVE
       REPORT
+
+      RIGHT
+      MOVE
+      REPORT
+
+      LEFT
+      MOVE
+      REPORT
     EOF
     output = <<EOF
 0,1,NORTH
+1,1,EAST
+1,2,NORTH
 EOF
     expect(Open3.capture2e('./robot', stdin_data: input).first).to eq output
   end
