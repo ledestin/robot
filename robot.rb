@@ -16,6 +16,8 @@ class Robot
     @coords if command == 'REPORT'
   end
 
+  private
+
   def parse_place_command str
     x, y, direction = str.split(/\s+/, 2).last.split /\s*,\s*/
     begin
