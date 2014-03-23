@@ -2,7 +2,7 @@ require 'open3'
 require './robot'
 
 describe 'robot executable' do
-  it 'processes input commands and prints output' do
+  xit 'processes input commands and prints output' do
     input = <<-EOF
       PLACE 0,0,NORTH
       MOVE
@@ -16,4 +16,8 @@ EOF
 end
 
 describe Robot do
+  it 'command PLACE 0,0,NORTH works' do
+    subject.execute_command 'PLACE 0,0,NORTH'
+    expect(subject.execute_command('REPORT')).to eq '0,0,NORTH'
+  end
 end
