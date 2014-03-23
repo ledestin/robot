@@ -1,7 +1,7 @@
 require './direction'
 
 class Robot
-  PlaceCoords = Struct.new(:x, :y, :direction) do
+  State = Struct.new(:x, :y, :direction) do
     def to_s
       [x, y, direction].join ','
     end
@@ -63,6 +63,6 @@ class Robot
       return
     end
 
-    PlaceCoords.new x, y, direction
+    State.new x, y, direction
   end
 end
