@@ -38,5 +38,13 @@ describe Robot do
       subject.execute_command 'PLACE 0,0,NOOP'
       expect(subject.execute_command('REPORT')).to be_nil
     end
+
+    context 'is ignored when placing robot outside table' do
+      it '(x coordinate is outside table)' do
+	x = Robot::MAX_WIDTH + 1
+	subject.execute_command "PLACE #{x},0,NORTH"
+	expect(subject.execute_command('REPORT')).to be_nil
+      end
+    end
   end
 end
