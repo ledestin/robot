@@ -69,5 +69,11 @@ describe Robot do
       subject.execute_command 'MOVE'
       expect(subject.execute_command('REPORT')).to eq '0,1,NORTH'
     end
+
+    it 'decreases x by 1 when moving facing west' do
+      subject.execute_command 'PLACE 1,0,WEST'
+      subject.execute_command 'MOVE'
+      expect(subject.execute_command('REPORT')).to eq '0,0,WEST'
+    end
   end
 end

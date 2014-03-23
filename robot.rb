@@ -28,6 +28,8 @@ class Robot
 	@coords.y += 1
       when 'EAST'
 	@coords.x += 1
+      when 'WEST'
+	@coords.x -= 1
       end
     end
   end
