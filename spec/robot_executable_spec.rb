@@ -1,4 +1,5 @@
 require 'open3'
+require './robot'
 
 describe 'robot executable' do
   it 'processes input commands and prints output' do
@@ -12,4 +13,7 @@ describe 'robot executable' do
 EOF
     expect(Open3.capture2e('./robot', stdin_data: input).first).to eq output
   end
+end
+
+describe Robot do
 end
