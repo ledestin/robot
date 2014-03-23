@@ -16,7 +16,7 @@ EOF
 end
 
 describe Robot do
-  it 'command PLACE 0,0,NORTH works' do
+  it 'command PLACE 0,0,NORTH places robot' do
     subject.execute_command 'PLACE 0,0,NORTH'
     expect(subject.execute_command('REPORT')).to eq '0,0,NORTH'
   end
