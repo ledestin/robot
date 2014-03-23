@@ -1,6 +1,7 @@
 require './direction'
 
 class Robot
+  TABLE_HEIGHT = 5
   TABLE_WIDTH = 5
   INTEGER_REGEX = /^\d+$/
 
@@ -14,7 +15,7 @@ class Robot
     command.strip!
     if command =~ /^PLACE\s+/
       return unless coords = parse_place_command(command)
-      return if coords.x > TABLE_WIDTH
+      return if coords.x > TABLE_WIDTH || coords.y > TABLE_HEIGHT
 
       @coords = coords.to_s
       return

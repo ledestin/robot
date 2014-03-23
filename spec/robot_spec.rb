@@ -46,6 +46,12 @@ describe Robot do
 	subject.execute_command "PLACE #{x},0,NORTH"
 	expect(subject.execute_command('REPORT')).to be_nil
       end
+
+      it '(y coordinate is outside table)' do
+	y = Robot::TABLE_HEIGHT + 1
+	subject.execute_command "PLACE 0,#{y},NORTH"
+	expect(subject.execute_command('REPORT')).to be_nil
+      end
     end
   end
 end
