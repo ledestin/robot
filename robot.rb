@@ -28,7 +28,22 @@ class Robot
 
   private
 
+  def can_move?
+    case @coords.direction
+    when Direction::NORTH
+      @coords.y + 1 <= TABLE_HEIGHT
+    when Direction::SOUTH
+      @coords.y - 1 >= 0
+    when Direction::EAST
+      @coords.x + 1 <= TABLE_WIDTH
+    when Direction::WEST
+      @coords.x - 1 >= 0
+    end
+  end
+
   def move
+    return unless can_move?
+
     case @coords.direction
     when Direction::NORTH
       @coords.y += 1

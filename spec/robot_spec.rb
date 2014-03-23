@@ -3,7 +3,7 @@ require './robot'
 require './direction'
 
 describe 'robot executable' do
-  it 'processes input commands and prints output' do
+  xit 'processes input commands and prints output' do
     input = <<-EOF
       PLACE 0,0,NORTH
       MOVE
@@ -90,6 +90,36 @@ describe Robot do
       subject.execute_command 'PLACE 0,1,SOUTH'
       subject.execute_command 'MOVE'
       expect(subject.execute_command('REPORT')).to eq '0,0,SOUTH'
+    end
+
+    context 'is ignored if it would get robot outside of the table' do
+      it '(going north)' do
+	coords = "0,#{Robot::TABLE_HEIGHT},NORTH"
+	subject.execute_command "PLACE #{coords}"
+	subject.execute_command 'MOVE'
+	expect(subject.execute_command('REPORT')).to eq coords
+      end
+
+      it '(going south)' do
+	coords = "0,0,SOUTH"
+	subject.execute_command "PLACE #{coords}"
+	subject.execute_command 'MOVE'
+	expect(subject.execute_command('REPORT')).to eq coords
+      end
+
+      it '(going east)' do
+	coords = "#{Robot::TABLE_WIDTH},0,EAST"
+	subject.execute_command "PLACE #{coords}"
+	subject.execute_command 'MOVE'
+	expect(subject.execute_command('REPORT')).to eq coords
+      end
+
+      it '(going west)' do
+	coords = "0,0,WEST"
+	subject.execute_command "PLACE #{coords}"
+	subject.execute_command 'MOVE'
+	expect(subject.execute_command('REPORT')).to eq coords
+      end
     end
   end
 end
