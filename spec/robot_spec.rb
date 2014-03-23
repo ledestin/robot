@@ -31,5 +31,10 @@ describe Robot do
       subject.execute_command 'PLACE 0,a,NORTH'
       expect(subject.execute_command('REPORT')).to be_nil
     end
+
+    it '0,0,NOOP is ignored' do
+      subject.execute_command 'PLACE 0,0,NOOP'
+      expect(subject.execute_command('REPORT')).to be_nil
+    end
   end
 end
