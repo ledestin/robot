@@ -25,17 +25,17 @@ describe Robot do
       end
     }
 
-    it 'a,0,NORTH is ignored' do
+    it 'with invalid x is ignored' do
       subject.execute_command 'PLACE a,0,NORTH'
       expect(subject.execute_command('REPORT')).to be_nil
     end
 
-    it '0,a,NORTH is ignored' do
+    it 'with invalid y is ignored' do
       subject.execute_command 'PLACE 0,a,NORTH'
       expect(subject.execute_command('REPORT')).to be_nil
     end
 
-    it '0,0,NOOP is ignored' do
+    it 'with invalid direction is ignored' do
       subject.execute_command 'PLACE 0,0,NOOP'
       expect(subject.execute_command('REPORT')).to be_nil
     end
