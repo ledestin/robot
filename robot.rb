@@ -22,7 +22,14 @@ class Robot
     end
     return @coords ? @coords.to_s : nil if command == 'REPORT'
 
-    @coords.x += 1 if command == 'MOVE'
+    if command == 'MOVE'
+      case @coords.direction
+      when 'NORTH'
+	@coords.y += 1
+      when 'EAST'
+	@coords.x += 1
+      end
+    end
   end
 
   private
