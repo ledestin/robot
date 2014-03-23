@@ -58,13 +58,13 @@ describe Robot do
   end
 
   context 'command MOVE' do
-    it 'increases x by 1' do
+    it 'increases x by 1 when moving facing east' do
       subject.execute_command 'PLACE 0,0,EAST'
       subject.execute_command 'MOVE'
       expect(subject.execute_command('REPORT')).to eq '1,0,EAST'
     end
 
-    it 'increases y by 1' do
+    it 'increases y by 1 when moving facing north' do
       subject.execute_command 'PLACE 0,0,NORTH'
       subject.execute_command 'MOVE'
       expect(subject.execute_command('REPORT')).to eq '0,1,NORTH'
