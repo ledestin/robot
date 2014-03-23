@@ -17,10 +17,12 @@ class Robot
       return unless coords = parse_place_command(command)
       return if coords.x > TABLE_WIDTH || coords.y > TABLE_HEIGHT
 
-      @coords = coords.to_s
+      @coords = coords
       return
     end
-    @coords if command == 'REPORT'
+    return @coords ? @coords.to_s : nil if command == 'REPORT'
+
+    @coords.x += 1 if command == 'MOVE'
   end
 
   private

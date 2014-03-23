@@ -56,4 +56,12 @@ describe Robot do
       end
     end
   end
+
+  context 'command MOVE' do
+    it 'increases x by 1' do
+      subject.execute_command 'PLACE 0,0,EAST'
+      subject.execute_command 'MOVE'
+      expect(subject.execute_command('REPORT')).to eq '1,0,EAST'
+    end
+  end
 end
