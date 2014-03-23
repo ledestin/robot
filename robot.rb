@@ -23,6 +23,7 @@ class Robot
     return @coords ? @coords.to_s : nil if command == 'REPORT'
 
     move if command == 'MOVE'
+    nil
   end
 
   private

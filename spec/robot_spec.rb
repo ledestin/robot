@@ -3,7 +3,7 @@ require './robot'
 require './direction'
 
 describe 'robot executable' do
-  xit 'processes input commands and prints output' do
+  it 'processes input commands and prints output' do
     input = <<-EOF
       PLACE 0,0,NORTH
       MOVE
