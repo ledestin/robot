@@ -25,4 +25,9 @@ describe Robot do
     subject.execute_command 'PLACE a,0,NORTH'
     expect(subject.execute_command('REPORT')).to be_nil
   end
+
+  it 'command PLACE 0,a,NORTH is ignored' do
+    subject.execute_command 'PLACE 0,a,NORTH'
+    expect(subject.execute_command('REPORT')).to be_nil
+  end
 end
