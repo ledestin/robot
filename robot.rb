@@ -3,7 +3,6 @@ require './direction'
 class Robot
   TABLE_HEIGHT = 5
   TABLE_WIDTH = 5
-  INTEGER_REGEX = /^\d+$/
 
   PlaceCoords = Struct.new(:x, :y, :direction) do
     def to_s
