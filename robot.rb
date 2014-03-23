@@ -7,9 +7,13 @@ class Robot
     command.strip!
     if command =~ /^PLACE\s+(.+)$/
       x, y, direction = $1.split /\s*,\s*/
-      return unless x =~ INTEGER_REGEX && y =~ INTEGER_REGEX &&
-	direction =~ /^(#{DIRECTIONS.join('|')})$/
-      return if x.to_i > TABLE_WIDTH
+      begin
+	x, y = Integer(x), Integer(y)
+      rescue ArgumentError
+	return
+      end
+      return unless direction =~ /^(#{DIRECTIONS.join('|')})$/
+      return if x > TABLE_WIDTH
 
       @coords = [x, y, direction].join(',')
       return
