@@ -24,13 +24,13 @@ class Robot
 
     if command == 'MOVE'
       case @coords.direction
-      when 'NORTH'
+      when Direction::NORTH
 	@coords.y += 1
-      when 'SOUTH'
+      when Direction::SOUTH
 	@coords.y -= 1
-      when 'EAST'
+      when Direction::EAST
 	@coords.x += 1
-      when 'WEST'
+      when Direction::WEST
 	@coords.x -= 1
       end
     end

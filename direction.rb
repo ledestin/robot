@@ -1,6 +1,10 @@
 class Robot
   class Direction < String
-    ALL = %w(NORTH EAST SOUTH WEST)
+    NORTH = 'NORTH'
+    EAST = 'EAST'
+    SOUTH = 'SOUTH'
+    WEST = 'WEST'
+    ALL = [NORTH, EAST, SOUTH, WEST]
 
     def self.Direction direction
       raise ArgumentError, "#{direction}: unknown direction" \
