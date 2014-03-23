@@ -1,10 +1,14 @@
 class Robot
   DIRECTIONS = %w(NORTH EAST SOUTH WEST)
+  INTEGER_REGEX = /^\d+$/
 
   def execute_command command
     command.strip!
-    if command =~ /^PLACE ((?:(?:\d+)\s*,){2}(#{DIRECTIONS.join('|')}))$/o
-      @coords = $1
+    if command =~ /^PLACE\s+(.+)$/
+      x, y, direction = $1.split /\s*,\s*/
+      return unless x =~ INTEGER_REGEX && y =~ INTEGER_REGEX &&
+	direction =~ /^(#{DIRECTIONS.join('|')})$/
+      @coords = [x, y, direction].join(',')
       return
     end
     @coords if command == 'REPORT'
