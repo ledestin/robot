@@ -22,21 +22,23 @@ class Robot
     end
     return @coords ? @coords.to_s : nil if command == 'REPORT'
 
-    if command == 'MOVE'
-      case @coords.direction
-      when Direction::NORTH
-	@coords.y += 1
-      when Direction::SOUTH
-	@coords.y -= 1
-      when Direction::EAST
-	@coords.x += 1
-      when Direction::WEST
-	@coords.x -= 1
-      end
-    end
+    move if command == 'MOVE'
   end
 
   private
+
+  def move
+    case @coords.direction
+    when Direction::NORTH
+      @coords.y += 1
+    when Direction::SOUTH
+      @coords.y -= 1
+    when Direction::EAST
+      @coords.x += 1
+    when Direction::WEST
+      @coords.x -= 1
+    end
+  end
 
   def parse_place_command str
     x, y, direction = str.split(/\s+/, 2).last.split(/\s*,\s*/)
