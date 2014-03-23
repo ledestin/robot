@@ -26,6 +26,8 @@ class Robot
       case @coords.direction
       when 'NORTH'
 	@coords.y += 1
+      when 'SOUTH'
+	@coords.y -= 1
       when 'EAST'
 	@coords.x += 1
       when 'WEST'
