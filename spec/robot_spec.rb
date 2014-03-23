@@ -25,19 +25,21 @@ describe Robot do
       end
     }
 
-    it 'with invalid x is ignored' do
-      subject.execute_command 'PLACE a,0,NORTH'
-      expect(subject.execute_command('REPORT')).to be_nil
-    end
+    context 'is ignored when given invalid' do
+      it 'x' do
+	subject.execute_command 'PLACE a,0,NORTH'
+	expect(subject.execute_command('REPORT')).to be_nil
+      end
 
-    it 'with invalid y is ignored' do
-      subject.execute_command 'PLACE 0,a,NORTH'
-      expect(subject.execute_command('REPORT')).to be_nil
-    end
+      it 'y' do
+	subject.execute_command 'PLACE 0,a,NORTH'
+	expect(subject.execute_command('REPORT')).to be_nil
+      end
 
-    it 'with invalid direction is ignored' do
-      subject.execute_command 'PLACE 0,0,NOOP'
-      expect(subject.execute_command('REPORT')).to be_nil
+      it 'direction' do
+	subject.execute_command 'PLACE 0,0,NOOP'
+	expect(subject.execute_command('REPORT')).to be_nil
+      end
     end
 
     context 'is ignored when placing robot outside table' do
