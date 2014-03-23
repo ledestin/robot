@@ -1,5 +1,6 @@
+require './direction'
+
 class Robot
-  DIRECTIONS = %w(NORTH EAST SOUTH WEST)
   TABLE_WIDTH = 5
   INTEGER_REGEX = /^\d+$/
 
@@ -26,11 +27,10 @@ class Robot
   def parse_place_command str
     x, y, direction = str.split(/\s+/, 2).last.split(/\s*,\s*/)
     begin
-      x, y = Integer(x), Integer(y)
+      x, y, direction = Integer(x), Integer(y), Direction(direction)
     rescue ArgumentError
       return
     end
-    return unless direction =~ /^(#{DIRECTIONS.join('|')})$/
 
     PlaceCoords.new x, y, direction
   end

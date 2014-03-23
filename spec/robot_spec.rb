@@ -1,5 +1,6 @@
 require 'open3'
 require './robot'
+require './direction'
 
 describe 'robot executable' do
   xit 'processes input commands and prints output' do
@@ -17,7 +18,7 @@ end
 
 describe Robot do
   context 'command PLACE' do
-    Robot::DIRECTIONS.each { |direction|
+    Robot::Direction::ALL.each { |direction|
       it "0,0,#{direction} places robot" do
 	subject.execute_command "PLACE 0,0,#{direction}"
 	expect(subject.execute_command("REPORT")).to eq "0,0,#{direction}"
