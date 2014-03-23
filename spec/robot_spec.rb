@@ -17,10 +17,12 @@ end
 
 describe Robot do
   context 'command PLACE' do
-    it '0,0,NORTH places robot' do
-      subject.execute_command 'PLACE 0,0,NORTH'
-      expect(subject.execute_command('REPORT')).to eq '0,0,NORTH'
-    end
+    Robot::DIRECTIONS.each { |direction|
+      it "0,0,#{direction} places robot" do
+	subject.execute_command "PLACE 0,0,#{direction}"
+	expect(subject.execute_command("REPORT")).to eq "0,0,#{direction}"
+      end
+    }
 
     it 'a,0,NORTH is ignored' do
       subject.execute_command 'PLACE a,0,NORTH'
