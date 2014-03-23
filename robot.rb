@@ -1,14 +1,14 @@
 require './direction'
 
 class Robot
-  TABLE_HEIGHT = 5
-  TABLE_WIDTH = 5
-
   PlaceCoords = Struct.new(:x, :y, :direction) do
     def to_s
       [x, y, direction].join ','
     end
   end
+
+  TABLE_HEIGHT = 5
+  TABLE_WIDTH = 5
 
   def execute_command command
     command.strip!
