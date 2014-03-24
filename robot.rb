@@ -34,14 +34,10 @@ class Robot
   def move
     new_coords = @coords.clone
     case @coords.direction
-    when Direction::NORTH
-      new_coords.y += 1
-    when Direction::SOUTH
-      new_coords.y -= 1
-    when Direction::EAST
-      new_coords.x += 1
-    when Direction::WEST
-      new_coords.x -= 1
+    when Direction::NORTH then new_coords.y += 1
+    when Direction::SOUTH then new_coords.y -= 1
+    when Direction::EAST  then new_coords.x += 1
+    when Direction::WEST  then new_coords.x -= 1
     end
 
     @coords = new_coords if @@table.inside?(new_coords.x, new_coords.y)
