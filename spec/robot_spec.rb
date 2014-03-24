@@ -54,13 +54,13 @@ describe Robot do
 
     context 'is ignored when placing robot outside table' do
       it '(x coordinate is outside table)' do
-	x = Robot::TABLE_WIDTH + 1
+	x = Robot.table.width + 1
 	subject.execute_command "PLACE #{x},0,NORTH"
 	expect(subject.execute_command('REPORT')).to be_nil
       end
 
       it '(y coordinate is outside table)' do
-	y = Robot::TABLE_HEIGHT + 1
+	y = Robot.table.height + 1
 	subject.execute_command "PLACE 0,#{y},NORTH"
 	expect(subject.execute_command('REPORT')).to be_nil
       end
@@ -94,7 +94,7 @@ describe Robot do
 
     context 'is ignored if it would get robot outside of the table' do
       it '(going north)' do
-	coords = "0,#{Robot::TABLE_HEIGHT},NORTH"
+	coords = "0,#{Robot.table.height},NORTH"
 	subject.execute_command "PLACE #{coords}"
 	subject.execute_command 'MOVE'
 	expect(subject.execute_command('REPORT')).to eq coords
@@ -108,7 +108,7 @@ describe Robot do
       end
 
       it '(going east)' do
-	coords = "#{Robot::TABLE_WIDTH},0,EAST"
+	coords = "#{Robot.table.width},0,EAST"
 	subject.execute_command "PLACE #{coords}"
 	subject.execute_command 'MOVE'
 	expect(subject.execute_command('REPORT')).to eq coords

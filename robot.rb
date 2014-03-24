@@ -1,4 +1,5 @@
 require './direction'
+require './table'
 
 class Robot
   State = Struct.new(:x, :y, :direction) do
@@ -7,14 +8,17 @@ class Robot
     end
   end
 
-  TABLE_HEIGHT = 5
-  TABLE_WIDTH = 5
+  @@table = Table.new 5, 5
+
+  def self.table
+    @@table
+  end
 
   def execute_command command
     command.strip!
     if command =~ /^PLACE\s+/
       return unless coords = parse_place_command(command)
-      return if coords.x > TABLE_WIDTH || coords.y > TABLE_HEIGHT
+      return unless @@table.inside?(coords.x, coords.y)
 
       @coords = coords
       return
@@ -27,32 +31,20 @@ class Robot
 
   private
 
-  def can_move?
-    case @coords.direction
-    when Direction::NORTH
-      @coords.y + 1 <= TABLE_HEIGHT
-    when Direction::SOUTH
-      @coords.y - 1 >= 0
-    when Direction::EAST
-      @coords.x + 1 <= TABLE_WIDTH
-    when Direction::WEST
-      @coords.x - 1 >= 0
-    end
-  end
-
   def move
-    return unless can_move?
-
+    new_coords = @coords.clone
     case @coords.direction
     when Direction::NORTH
-      @coords.y += 1
+      new_coords.y += 1
     when Direction::SOUTH
-      @coords.y -= 1
+      new_coords.y -= 1
     when Direction::EAST
-      @coords.x += 1
+      new_coords.x += 1
     when Direction::WEST
-      @coords.x -= 1
+      new_coords.x -= 1
     end
+
+    @coords = new_coords if @@table.inside?(new_coords.x, new_coords.y)
   end
 
   def parse_place_command str
