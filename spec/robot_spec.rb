@@ -2,6 +2,10 @@ require 'open3'
 require './robot'
 require './direction'
 
+def execute_commands input
+  Open3.capture2e('./robot', stdin_data: input).first
+end
+
 describe 'robot executable' do
   xit 'processes input commands and prints output' do
     input = <<-EOF
@@ -22,7 +26,7 @@ describe 'robot executable' do
 1,1,EAST
 1,2,NORTH
 EOF
-    expect(Open3.capture2e('./robot', stdin_data: input).first).to eq output
+    expect(execute_commands input).to eq output
   end
 end
 
