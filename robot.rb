@@ -25,7 +25,10 @@ class Robot
     end
     return @coords ? @coords.to_s : nil if command == 'REPORT'
 
-    move if command == 'MOVE'
+    case command
+    when 'MOVE' then move
+    when 'LEFT' then @coords.direction = Direction::WEST
+    end
     nil
   end
 
