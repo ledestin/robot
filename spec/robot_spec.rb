@@ -28,6 +28,21 @@ describe 'robot executable' do
 EOF
     expect(execute_commands input).to eq output
   end
+
+  xit 'ignores all moving commands after it was placed outside of table' do
+    output = execute_commands <<-EOF
+      PLACE -1,0,NORTH
+      REPORT
+      MOVE
+      REPORT
+      LEFT
+      REPORT
+      RIGHT
+      REPORT
+    EOF
+
+    expect(output).to eq ''
+  end
 end
 
 describe Robot do
