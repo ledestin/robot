@@ -18,7 +18,7 @@ class Robot
     command.strip!
     if command =~ /^PLACE\s+/
       return unless coords = parse_place_command(command)
-      return unless @@table.inside?(coords.x, coords.y)
+      return unless @@table.contains?(coords.x, coords.y)
 
       @coords = coords
       return
@@ -40,7 +40,7 @@ class Robot
     when Direction::WEST  then new_coords.x -= 1
     end
 
-    @coords = new_coords if @@table.inside?(new_coords.x, new_coords.y)
+    @coords = new_coords if @@table.contains?(new_coords.x, new_coords.y)
   end
 
   def parse_place_command str
