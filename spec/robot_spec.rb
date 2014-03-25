@@ -54,14 +54,12 @@ describe Robot do
 
     context 'is ignored when placing robot outside table' do
       it '(x coordinate is outside table)' do
-	x = Robot.table.width
-	subject.execute_command "PLACE #{x},0,NORTH"
+	subject.execute_command "PLACE #{Robot.table.width},0,NORTH"
 	expect(subject.execute_command('REPORT')).to be_nil
       end
 
       it '(y coordinate is outside table)' do
-	y = Robot.table.height
-	subject.execute_command "PLACE 0,#{y},NORTH"
+	subject.execute_command "PLACE 0,#{Robot.table.height},NORTH"
 	expect(subject.execute_command('REPORT')).to be_nil
       end
     end
