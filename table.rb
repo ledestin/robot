@@ -9,7 +9,7 @@ class Robot
     end
 
     def contains? x, y
-      x >= 0 && x <= @width && y >= 0 && y <= @height
+      x >= 0 && x < @width && y >= 0 && y < @height
     end
   end
 end
