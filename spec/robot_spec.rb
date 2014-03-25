@@ -146,5 +146,11 @@ describe Robot do
       subject.execute_command 'LEFT'
       expect(subject.execute_command 'REPORT').to eq '0,0,WEST'
     end
+
+    it 'changes direction from WEST to SOUTH' do
+      subject.execute_command 'PLACE 0,0,WEST'
+      subject.execute_command 'LEFT'
+      expect(subject.execute_command 'REPORT').to eq '0,0,SOUTH'
+    end
   end
 end
