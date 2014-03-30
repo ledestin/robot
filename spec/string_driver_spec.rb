@@ -58,4 +58,16 @@ describe Robot::StringDriver do
       end
     end
   end
+
+  context 'whitespace in a command is handled correctly,' do
+    it '(leading and trailing)' do
+      expect(@robot).to receive(:move)
+      @driver.execute_command "\t\n MOVE\n\t "
+    end
+
+    it '(has whitespace in arguments)' do
+      expect(@robot).to receive(:place)
+      @driver.execute_command "PLACE 0,\t0\t,\n   NORTH"
+    end
+  end
 end

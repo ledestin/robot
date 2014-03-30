@@ -7,6 +7,7 @@ class Robot
     end
 
     def execute_command command
+      command.strip!
       command, arguments = command.split(/\s+/, 2)
       robot_args = [command.downcase]
       robot_args.concat arguments.split(/\s*,\s*/) if arguments
