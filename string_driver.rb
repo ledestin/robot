@@ -11,10 +11,7 @@ class Robot
       return unless supported_command? command, arguments
 
       ret = @robot.send(command.downcase, *arguments)
-      return unless command == 'REPORT'
-
-      ret = ret.to_s if ret
-      ret
+      process_result command, ret
     end
 
     private
@@ -24,6 +21,13 @@ class Robot
       command, arguments = command.split(/\s+/, 2)
       arguments = arguments ? arguments.split(/\s*,\s*/) : []
       [command, arguments]
+    end
+
+    def process_result command, result
+      return unless command == 'REPORT'
+      return result if result.nil?
+
+      result.to_s
     end
 
     def supported_command? command, arguments
