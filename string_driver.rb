@@ -9,12 +9,11 @@ class Robot
     def execute_command command
       command.strip!
       command, arguments = command.split(/\s+/, 2)
-      robot_args = [command.downcase]
-      robot_args.concat arguments.split(/\s*,\s*/) if arguments
+      arguments = arguments ? arguments.split(/\s*,\s*/) : []
       return unless SUPPORTED_COMMANDS.include? command
-      return if command == 'PLACE' && robot_args.size != 4
+      return if command == 'PLACE' && arguments.size != 3
 
-      ret = @robot.send *robot_args
+      ret = @robot.send(command.downcase, *arguments)
       command == 'REPORT' ? ret : nil
     end
   end
