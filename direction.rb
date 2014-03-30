@@ -11,8 +11,8 @@ class Robot
 
     NORTH = Direction 'NORTH'
     EAST = Direction 'EAST'
-    SOUTH = 'SOUTH'
-    WEST = 'WEST'
+    SOUTH = Direction 'SOUTH'
+    WEST = Direction 'WEST'
 
     Kernel.class_eval <<-EOF
       def Direction direction
@@ -24,6 +24,8 @@ class Robot
       case self
       when NORTH then EAST
       when EAST then SOUTH
+      when SOUTH then WEST
+      when WEST then NORTH
       end
     end
   end

@@ -19,5 +19,13 @@ describe Robot::Direction do
     it 'of EAST returns SOUTH' do
       expect(Robot::Direction::EAST.next).to eq Robot::Direction::SOUTH
     end
+
+    it 'of SOUTH returns WEST' do
+      expect(Robot::Direction::SOUTH.next).to eq Robot::Direction::WEST
+    end
+
+    it 'of WEST returns NORTH' do
+      expect(Robot::Direction::WEST.next).to eq Robot::Direction::NORTH
+    end
   end
 end
