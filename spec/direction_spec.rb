@@ -22,4 +22,16 @@ describe Robot::Direction do
       end
     }
   end
+
+  context '#prev' do
+    [ [Robot::Direction::NORTH, Robot::Direction::EAST],
+      [Robot::Direction::EAST, Robot::Direction::SOUTH],
+      [Robot::Direction::SOUTH, Robot::Direction::WEST],
+      [Robot::Direction::WEST, Robot::Direction::NORTH]
+    ].each { |to, from|
+      it "of #{from} returns #{to}" do
+	expect(from.prev).to eq to
+      end
+    }
+  end
 end

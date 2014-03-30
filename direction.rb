@@ -28,5 +28,14 @@ class Robot
       when WEST then NORTH
       end
     end
+
+    def prev
+      case self
+      when NORTH then WEST
+      when WEST then SOUTH
+      when SOUTH then EAST
+      when EAST then NORTH
+      end
+    end
   end
 end
