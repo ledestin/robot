@@ -6,7 +6,7 @@ describe Robot::StringDriver do
     @driver = Robot::StringDriver.new @robot
   end
 
-  ['PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT'].each { |command|
+  Robot::StringDriver::SUPPORTED_COMMANDS.each { |command|
     it "#{command} command calls corresponding robot method" do
       expect(@robot).to receive(command.downcase)
       @driver.execute_command command
