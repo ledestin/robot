@@ -9,7 +9,8 @@ class Robot
     def execute_command command
       return unless SUPPORTED_COMMANDS.include? command
 
-      @robot.send command.downcase
+      ret = @robot.send command.downcase
+      command == 'REPORT' ? ret : nil
     end
   end
 end

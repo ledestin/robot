@@ -18,4 +18,13 @@ describe Robot::StringDriver do
     expect(@robot).not_to receive(command)
     @driver.execute_command command
   end
+
+  context 'value returned by robot method is ignored for' do
+    (Robot::StringDriver::SUPPORTED_COMMANDS - ['REPORT']).each { |command|
+      it command do
+	allow(@robot).to receive(command.downcase) { 'result' }
+	expect(@driver.execute_command command).to eq nil
+      end
+    }
+  end
 end
