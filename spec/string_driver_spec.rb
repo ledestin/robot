@@ -33,9 +33,11 @@ describe Robot::StringDriver do
     expect(@driver.execute_command 'REPORT').not_to eq nil
   end
 
-  it 'PLACE command requires 3 arguments to be passed to robot' do
-    allow(@robot).to receive(:place)
-    @driver.execute_command 'PLACE 0,0,NORTH'
-    expect(@robot).to have_received(:place).with('0', '0', 'NORTH')
+  context 'PLACE command requires 3 arguments to be passed to robot,' do
+    it 'is passed to robot when given 3 arguments' do
+      allow(@robot).to receive(:place)
+      @driver.execute_command 'PLACE 0,0,NORTH'
+      expect(@robot).to have_received(:place).with('0', '0', 'NORTH')
+    end
   end
 end
