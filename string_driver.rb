@@ -7,9 +7,7 @@ class Robot
     end
 
     def execute_command command
-      command.strip!
-      command, arguments = command.split(/\s+/, 2)
-      arguments = arguments ? arguments.split(/\s*,\s*/) : []
+      command, arguments = parse_command command
       return unless SUPPORTED_COMMANDS.include? command
       return if command == 'PLACE' && arguments.size != 3
 
@@ -18,6 +16,15 @@ class Robot
 
       ret = ret.to_s if ret
       ret
+    end
+
+    private
+
+    def parse_command command
+      command.strip!
+      command, arguments = command.split(/\s+/, 2)
+      arguments = arguments ? arguments.split(/\s*,\s*/) : []
+      [command, arguments]
     end
   end
 end
