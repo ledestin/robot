@@ -8,8 +8,7 @@ class Robot
 
     def execute_command command
       command, arguments = parse_command command
-      return unless SUPPORTED_COMMANDS.include? command
-      return if command == 'PLACE' && arguments.size != 3
+      return unless supported_command? command, arguments
 
       ret = @robot.send(command.downcase, *arguments)
       return unless command == 'REPORT'
@@ -25,6 +24,12 @@ class Robot
       command, arguments = command.split(/\s+/, 2)
       arguments = arguments ? arguments.split(/\s*,\s*/) : []
       [command, arguments]
+    end
+
+    def supported_command? command, arguments
+      return unless SUPPORTED_COMMANDS.include? command
+      return if command == 'PLACE' && arguments.size != 3
+      true
     end
   end
 end
