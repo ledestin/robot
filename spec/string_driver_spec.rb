@@ -27,4 +27,9 @@ describe Robot::StringDriver do
       end
     }
   end
+
+  it "#execute_command 'REPORT' returns value returned by robot" do
+    allow(@robot).to receive(:report) { 'result' }
+    expect(@driver.execute_command 'REPORT').not_to eq nil
+  end
 end
