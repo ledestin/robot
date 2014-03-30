@@ -8,6 +8,6 @@ describe Robot::Direction do
   }
 
   it 'Direction() raises ArgumentError if passed unknown direction' do
-    expect { Direction('INVALID') }.to raise_error
+    expect { Direction('INVALID') }.to raise_error ArgumentError
   end
 end
