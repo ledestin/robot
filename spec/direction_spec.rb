@@ -32,4 +32,12 @@ describe Robot::Direction do
       end
     }
   end
+
+  it '#next! replaces self with direction, returned by #next' do
+    expect(Direction('NORTH').next!).to eq Robot::Direction::NORTH.next
+  end
+
+  it '#prev! replaces self with direction, returned by #prev' do
+    expect(Direction('NORTH').prev!).to eq Robot::Direction::NORTH.prev
+  end
 end

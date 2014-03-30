@@ -28,12 +28,7 @@ class Robot
     case command
     when 'MOVE' then move
     when 'LEFT' then
-      @coords.direction = case @coords.direction
-      when Direction::NORTH
-	Direction::WEST
-      when Direction::WEST
-	Direction::SOUTH
-      end
+      @coords.direction.prev!
     end
     nil
   end

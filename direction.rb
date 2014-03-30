@@ -29,6 +29,10 @@ class Robot
       end
     end
 
+    def next!
+      replace self.next
+    end
+
     def prev
       case self
       when NORTH then WEST
@@ -36,6 +40,10 @@ class Robot
       when SOUTH then EAST
       when EAST then NORTH
       end
+    end
+
+    def prev!
+      replace self.prev
     end
   end
 end
