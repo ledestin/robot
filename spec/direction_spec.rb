@@ -11,12 +11,14 @@ describe Robot::Direction do
     expect { Direction('INVALID') }.to raise_error ArgumentError
   end
 
+  direction_states = [
+    [Robot::Direction::NORTH, Robot::Direction::EAST],
+    [Robot::Direction::EAST, Robot::Direction::SOUTH],
+    [Robot::Direction::SOUTH, Robot::Direction::WEST],
+    [Robot::Direction::WEST, Robot::Direction::NORTH]
+  ]
   context '#next' do
-    [ [Robot::Direction::NORTH, Robot::Direction::EAST],
-      [Robot::Direction::EAST, Robot::Direction::SOUTH],
-      [Robot::Direction::SOUTH, Robot::Direction::WEST],
-      [Robot::Direction::WEST, Robot::Direction::NORTH]
-    ].each { |from, to|
+    direction_states.each { |from, to|
       it "of #{from} returns #{to}" do
 	expect(from.next).to eq to
       end
@@ -24,11 +26,7 @@ describe Robot::Direction do
   end
 
   context '#prev' do
-    [ [Robot::Direction::NORTH, Robot::Direction::EAST],
-      [Robot::Direction::EAST, Robot::Direction::SOUTH],
-      [Robot::Direction::SOUTH, Robot::Direction::WEST],
-      [Robot::Direction::WEST, Robot::Direction::NORTH]
-    ].each { |to, from|
+    direction_states.each { |to, from|
       it "of #{from} returns #{to}" do
 	expect(from.prev).to eq to
       end
