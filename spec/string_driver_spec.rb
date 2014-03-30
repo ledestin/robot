@@ -39,5 +39,23 @@ describe Robot::StringDriver do
       @driver.execute_command 'PLACE 0,0,NORTH'
       expect(@robot).to have_received(:place).with('0', '0', 'NORTH')
     end
+
+    context "isn't passed to robot when" do
+      before :each do
+	expect(@robot).not_to receive(:place)
+      end
+
+      it 'no arguments given' do
+	@driver.execute_command 'PLACE'
+      end
+
+      it 'one argument given' do
+	@driver.execute_command 'PLACE 0'
+      end
+
+      it 'four arguments given' do
+	@driver.execute_command 'PLACE 0,0,0,0'
+      end
+    end
   end
 end
