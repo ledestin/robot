@@ -10,4 +10,14 @@ describe Robot::Direction do
   it 'Direction() raises ArgumentError if passed unknown direction' do
     expect { Direction('INVALID') }.to raise_error ArgumentError
   end
+
+  context '#next' do
+    it 'of NORTH returns EAST' do
+      expect(Robot::Direction::NORTH.next).to eq Robot::Direction::EAST
+    end
+
+    it 'of EAST returns SOUTH' do
+      expect(Robot::Direction::EAST.next).to eq Robot::Direction::SOUTH
+    end
+  end
 end
