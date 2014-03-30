@@ -49,6 +49,6 @@ class Robot
   end
 
   def report
-    @coords ? @coords.to_s : nil
+    @coords
   end
 end
