@@ -1,4 +1,5 @@
 require './direction'
+require './string_driver'
 require './table'
 
 class Robot
@@ -14,26 +15,17 @@ class Robot
     @@table
   end
 
-  def execute_command command
-    command.strip!
-    if command =~ /^PLACE\s+/
-      return unless coords = parse_place_command(command)
-      return unless @@table.contains?(coords.x, coords.y)
-
-      @coords = coords
-      return
-    end
-    return @coords ? @coords.to_s : nil if command == 'REPORT'
-
-    case command
-    when 'MOVE' then move
-    when 'LEFT' then
-      @coords.direction.prev!
-    end
-    nil
+  def initialize
+    @driver = StringDriver.new self
   end
 
-  private
+  def execute_command command
+    @driver.execute_command command
+  end
+
+  def left
+    @coords.direction.prev!
+  end
 
   def move
     new_coords = @coords.clone
@@ -47,14 +39,16 @@ class Robot
     @coords = new_coords if @@table.contains?(new_coords.x, new_coords.y)
   end
 
-  def parse_place_command str
-    x, y, direction = str.split(/\s+/, 2).last.split(/\s*,\s*/)
-    begin
-      x, y, direction = Integer(x), Integer(y), Direction(direction)
-    rescue ArgumentError
-      return
-    end
+  def place x, y, direction
+    x, y, direction = Integer(x), Integer(y), Direction(direction)
+    return unless @@table.contains? x, y
 
-    State.new x, y, direction
+    @coords = State.new(x, y, direction)
+  rescue ArgumentError
+    return
+  end
+
+  def report
+    @coords ? @coords.to_s : nil
   end
 end
