@@ -70,4 +70,16 @@ describe Robot::StringDriver do
       @driver.execute_command "PLACE 0,\t0\t,\n   NORTH"
     end
   end
+
+  context "#execute_command 'REPORT'" do
+    it 'converts non-nil returned value of robot#report to a string' do
+      allow(@robot).to receive(:report) { 42 }
+      expect(@driver.execute_command 'REPORT').to eq '42'
+    end
+
+    it 'returns nil if robot#report returns nil' do
+      allow(@robot).to receive(:report) { nil }
+      expect(@driver.execute_command 'REPORT').to eq nil
+    end
+  end
 end

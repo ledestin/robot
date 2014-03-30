@@ -14,7 +14,10 @@ class Robot
       return if command == 'PLACE' && arguments.size != 3
 
       ret = @robot.send(command.downcase, *arguments)
-      command == 'REPORT' ? ret : nil
+      return unless command == 'REPORT'
+
+      ret = ret.to_s if ret
+      ret
     end
   end
 end
