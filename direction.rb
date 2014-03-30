@@ -13,7 +13,7 @@ class Robot
       Direction.new direction
     end
 
-    Robot.class_eval <<-EOF
+    Kernel.class_eval <<-EOF
       def Direction direction
 	Direction::Direction direction
       end
