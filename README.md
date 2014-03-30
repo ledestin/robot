@@ -11,11 +11,13 @@ Toy Robot Simulator
   movement commands must still be allowed.
 
 * Create an application that can read in commands of the following form -
+```
 PLACE X,Y,F
 MOVE
 LEFT
 RIGHT
 REPORT
+```
 
 * PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. 
 * The origin (0,0) can be considered to be the SOUTH WEST most corner.
@@ -35,6 +37,7 @@ the initial placement of the toy robot.
 Any move that would cause the robot to fall must be ignored.
 
 Example Input and Output:
+```
 a)
 PLACE 0,0,NORTH
 MOVE
@@ -55,7 +58,7 @@ LEFT
 MOVE
 REPORT
 Output: 3,3,NORTH
-
+```
 
 ## Deliverables
 The source files, the test data and any test code.
