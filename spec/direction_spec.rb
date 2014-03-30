@@ -40,4 +40,12 @@ describe Robot::Direction do
   it '#prev! replaces self with direction, returned by #prev' do
     expect(Direction('NORTH').prev!).to eq Robot::Direction::NORTH.prev
   end
+
+  context 'Direction constants raise exception on' do
+    it '#next!' do
+      Robot::Direction::ALL.each { |direction|
+	expect { direction.next! }.to raise_error
+      }
+    end
+  end
 end

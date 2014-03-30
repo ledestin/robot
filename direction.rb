@@ -1,10 +1,10 @@
 class Robot
   class Direction < String
-    ALL = %w(NORTH EAST SOUTH WEST)
+    ALL_STR = %w(NORTH EAST SOUTH WEST)
 
     def self.Direction direction
       raise ArgumentError, "#{direction}: unknown direction" \
-	unless ALL.include? direction
+	unless ALL_STR.include? direction
 
       Direction.new direction
     end
@@ -13,6 +13,7 @@ class Robot
     EAST = Direction 'EAST'
     SOUTH = Direction 'SOUTH'
     WEST = Direction 'WEST'
+    ALL = [NORTH, EAST, SOUTH, WEST].map! { |d| d.freeze }
 
     Kernel.class_eval <<-EOF
       def Direction direction
