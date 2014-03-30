@@ -12,20 +12,14 @@ describe Robot::Direction do
   end
 
   context '#next' do
-    it 'of NORTH returns EAST' do
-      expect(Robot::Direction::NORTH.next).to eq Robot::Direction::EAST
-    end
-
-    it 'of EAST returns SOUTH' do
-      expect(Robot::Direction::EAST.next).to eq Robot::Direction::SOUTH
-    end
-
-    it 'of SOUTH returns WEST' do
-      expect(Robot::Direction::SOUTH.next).to eq Robot::Direction::WEST
-    end
-
-    it 'of WEST returns NORTH' do
-      expect(Robot::Direction::WEST.next).to eq Robot::Direction::NORTH
-    end
+    [ [Robot::Direction::NORTH, Robot::Direction::EAST],
+      [Robot::Direction::EAST, Robot::Direction::SOUTH],
+      [Robot::Direction::SOUTH, Robot::Direction::WEST],
+      [Robot::Direction::WEST, Robot::Direction::NORTH]
+    ].each { |from, to|
+      it "of #{from} returns #{to}" do
+	expect(from.next).to eq to
+      end
+    }
   end
 end
