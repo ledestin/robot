@@ -1,15 +1,10 @@
 require 'naught'
 require './direction'
 require './string_driver'
+require './state'
 require './table'
 
 class Robot
-  State = Struct.new(:x, :y, :direction) do
-    def to_s
-      [x, y, direction].join ','
-    end
-  end
-
   @@table = Table.new 5, 5
 
   def self.table
