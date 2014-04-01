@@ -141,16 +141,13 @@ describe Robot do
   end
 
   context 'command LEFT' do
-    it 'changes direction from NORTH to WEST' do
-      subject.place 0, 0, 'NORTH'
-      subject.left
-      expect(subject.report.to_s).to eq '0,0,WEST'
-    end
-
-    it 'changes direction from WEST to SOUTH' do
-      subject.place 0, 0, 'WEST'
-      subject.left
-      expect(subject.report.to_s).to eq '0,0,SOUTH'
-    end
+    direction = Direction 'NORTH'
+    3.times {
+      it "changes direction from #{direction} to #{direction.prev}" do
+	subject.place 0, 0, direction
+	subject.left
+	expect(subject.report.direction).to eq direction.prev!
+      end
+    }
   end
 end
