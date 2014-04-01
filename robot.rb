@@ -1,3 +1,4 @@
+require 'naught'
 require './direction'
 require './string_driver'
 require './table'
@@ -15,8 +16,15 @@ class Robot
     @@table
   end
 
+  BlackHole = Naught.build do |config|
+    config.black_hole
+    config.singleton
+    config.define_implicit_conversions
+  end
+
   def initialize
     @driver = StringDriver.new self
+    @coords = BlackHole.instance
   end
 
   def execute_command command
