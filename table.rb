@@ -8,7 +8,7 @@ class Robot
       @width, @height = width, height
     end
 
-    def contains? x, y
+    def contain? x, y
       x >= 0 && x < @width && y >= 0 && y < @height
     end
   end

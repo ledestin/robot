@@ -36,7 +36,7 @@ class Robot
     when Direction::WEST  then new_coords.x -= 1
     end
 
-    @coords = new_coords if @@table.contains?(new_coords.x, new_coords.y)
+    @coords = new_coords if @@table.contain?(new_coords.x, new_coords.y)
   end
 
   def right
@@ -45,7 +45,7 @@ class Robot
 
   def place x, y, direction
     x, y, direction = Integer(x), Integer(y), Direction(direction)
-    return unless @@table.contains? x, y
+    return unless @@table.contain? x, y
 
     @coords = State.new(x, y, direction)
   rescue ArgumentError
