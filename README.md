@@ -8,6 +8,12 @@ git clone https://github.com/ledestin/robot.git
 bundle
 ```
 
+## Usage
+
+Run `./robot < <input file>` to run robot. It accepts commands on STDIN.
+
+Run `rake` to run all tests.
+
 ## Description
 * The application is a simulation of a toy robot moving on a square tabletop,
   of dimensions 5 units x 5 units.
