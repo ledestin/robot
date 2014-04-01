@@ -39,6 +39,10 @@ class Robot
     @coords = new_coords if @@table.contains?(new_coords.x, new_coords.y)
   end
 
+  def right
+    @coords.direction.next!
+  end
+
   def place x, y, direction
     x, y, direction = Integer(x), Integer(y), Direction(direction)
     return unless @@table.contains? x, y

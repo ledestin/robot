@@ -150,4 +150,15 @@ describe Robot do
       end
     }
   end
+
+  context 'command RIGHT' do
+    direction = Direction 'NORTH'
+    3.times {
+      it "changes direction from #{direction} to #{direction.next}" do
+	subject.place 0, 0, direction
+	subject.right
+	expect(subject.report.direction).to eq direction.next!
+      end
+    }
+  end
 end
