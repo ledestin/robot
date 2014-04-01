@@ -27,7 +27,7 @@ EOF
     expect(execute_commands input).to eq output
   end
 
-  it 'report prints nothing if robot is not on the table' do
+  it 'REPORT prints nothing if robot is not on the table' do
     output = execute_commands <<-EOF
       PLACE -1,0,NORTH
       REPORT
