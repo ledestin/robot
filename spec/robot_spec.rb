@@ -38,6 +38,13 @@ describe Robot do
 	expect(subject.report).to be_nil
       end
     end
+
+    it "doesn't change existing state if invalid" do
+      subject.place 0, 0, 'NORTH'
+      expect(subject.report.to_s).to eq '0,0,NORTH'
+      subject.place -1, 0, 'NORTH'
+      expect(subject.report.to_s).to eq '0,0,NORTH'
+    end
   end
 
   context 'command MOVE' do
