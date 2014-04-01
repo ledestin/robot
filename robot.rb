@@ -45,7 +45,6 @@ class Robot
 
     @coords = State.new(x, y, direction)
   rescue ArgumentError
-    return
   end
 
   def report
