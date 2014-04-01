@@ -5,7 +5,7 @@ def execute_commands input
 end
 
 describe 'robot executable' do
-  xit 'handles all possible input commands and prints output' do
+  it 'handles all possible input commands and prints output' do
     input = <<-EOF
       PLACE 0,0,NORTH
       MOVE
