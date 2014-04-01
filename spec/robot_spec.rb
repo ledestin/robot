@@ -49,108 +49,108 @@ describe Robot do
   context 'command PLACE' do
     Robot::Direction::ALL.each { |direction|
       it "0,0,#{direction} places robot" do
-	subject.execute_command "PLACE 0,0,#{direction}"
-	expect(subject.execute_command("REPORT")).to eq "0,0,#{direction}"
+	subject.place 0, 0, direction
+	expect(subject.report.to_s).to eq "0,0,#{direction}"
       end
     }
 
     context 'is ignored when given invalid' do
       it 'x' do
-	subject.execute_command 'PLACE a,0,NORTH'
-	expect(subject.execute_command('REPORT')).to be_nil
+	subject.place 'a', 0, 'NORTH'
+	expect(subject.report).to be_nil
       end
 
       it 'y' do
-	subject.execute_command 'PLACE 0,a,NORTH'
-	expect(subject.execute_command('REPORT')).to be_nil
+	subject.place 0, 'a', 'NORTH'
+	expect(subject.report).to be_nil
       end
 
       it 'direction' do
-	subject.execute_command 'PLACE 0,0,NOOP'
-	expect(subject.execute_command('REPORT')).to be_nil
+	subject.place 0, 0, 'NOOP'
+	expect(subject.report).to be_nil
       end
     end
 
     context 'is ignored when placing robot outside table' do
       it '(x coordinate is outside table)' do
-	subject.execute_command "PLACE #{Robot.table.width},0,NORTH"
-	expect(subject.execute_command('REPORT')).to be_nil
+	subject.place Robot.table.width, 0, 'NORTH'
+	expect(subject.report).to be_nil
       end
 
       it '(y coordinate is outside table)' do
-	subject.execute_command "PLACE 0,#{Robot.table.height},NORTH"
-	expect(subject.execute_command('REPORT')).to be_nil
+	subject.place 0, Robot.table.height, 'NORTH'
+	expect(subject.report).to be_nil
       end
     end
   end
 
   context 'command MOVE' do
     it 'increases x by 1 when moving facing east' do
-      subject.execute_command 'PLACE 0,0,EAST'
-      subject.execute_command 'MOVE'
-      expect(subject.execute_command('REPORT')).to eq '1,0,EAST'
+      subject.place 0, 0, 'EAST'
+      subject.move
+      expect(subject.report.to_s).to eq '1,0,EAST'
     end
 
     it 'increases y by 1 when moving facing north' do
-      subject.execute_command 'PLACE 0,0,NORTH'
-      subject.execute_command 'MOVE'
-      expect(subject.execute_command('REPORT')).to eq '0,1,NORTH'
+      subject.place 0, 0, 'NORTH'
+      subject.move
+      expect(subject.report.to_s).to eq '0,1,NORTH'
     end
 
     it 'decreases x by 1 when moving facing west' do
-      subject.execute_command 'PLACE 1,0,WEST'
-      subject.execute_command 'MOVE'
-      expect(subject.execute_command('REPORT')).to eq '0,0,WEST'
+      subject.place 1, 0, 'WEST'
+      subject.move
+      expect(subject.report.to_s).to eq '0,0,WEST'
     end
 
     it 'decreases y by 1 when moving facing south' do
-      subject.execute_command 'PLACE 0,1,SOUTH'
-      subject.execute_command 'MOVE'
-      expect(subject.execute_command('REPORT')).to eq '0,0,SOUTH'
+      subject.place 0, 1, 'SOUTH'
+      subject.move
+      expect(subject.report.to_s).to eq '0,0,SOUTH'
     end
 
     context 'is ignored if it would get robot outside of the table' do
       it '(going north)' do
-	coords = "0,#{Robot.table.height - 1},NORTH"
-	subject.execute_command "PLACE #{coords}"
-	subject.execute_command 'MOVE'
-	expect(subject.execute_command('REPORT')).to eq coords
+	coords = Robot::State.new(0, Robot.table.height - 1, 'NORTH')
+	subject.place coords.x, coords.y, coords.direction
+	subject.move
+	expect(subject.report).to eq coords
       end
 
       it '(going south)' do
-	coords = "0,0,SOUTH"
-	subject.execute_command "PLACE #{coords}"
-	subject.execute_command 'MOVE'
-	expect(subject.execute_command('REPORT')).to eq coords
+	coords = Robot::State.new(0, 0, 'SOUTH')
+	subject.place coords.x, coords.y, coords.direction
+	subject.move
+	expect(subject.report).to eq coords
       end
 
       it '(going east)' do
-	coords = "#{Robot.table.width - 1},0,EAST"
-	subject.execute_command "PLACE #{coords}"
-	subject.execute_command 'MOVE'
-	expect(subject.execute_command('REPORT')).to eq coords
+	coords = Robot::State.new(Robot.table.width - 1, 0, 'EAST')
+	subject.place coords.x, coords.y, coords.direction
+	subject.move
+	expect(subject.report).to eq coords
       end
 
       it '(going west)' do
-	coords = "0,0,WEST"
-	subject.execute_command "PLACE #{coords}"
-	subject.execute_command 'MOVE'
-	expect(subject.execute_command('REPORT')).to eq coords
+	coords = Robot::State.new(0, 0, 'WEST')
+	subject.place coords.x, coords.y, coords.direction
+	subject.move
+	expect(subject.report).to eq coords
       end
     end
   end
 
   context 'command LEFT' do
     it 'changes direction from NORTH to WEST' do
-      subject.execute_command 'PLACE 0,0,NORTH'
-      subject.execute_command 'LEFT'
-      expect(subject.execute_command 'REPORT').to eq '0,0,WEST'
+      subject.place 0, 0, 'NORTH'
+      subject.left
+      expect(subject.report.to_s).to eq '0,0,WEST'
     end
 
     it 'changes direction from WEST to SOUTH' do
-      subject.execute_command 'PLACE 0,0,WEST'
-      subject.execute_command 'LEFT'
-      expect(subject.execute_command 'REPORT').to eq '0,0,SOUTH'
+      subject.place 0, 0, 'WEST'
+      subject.left
+      expect(subject.report.to_s).to eq '0,0,SOUTH'
     end
   end
 end
