@@ -31,12 +31,12 @@ class Robot
   end
 
   def left
-    @coords.direction.prev!
+    direction.prev!
   end
 
   def move
     new_coords = @coords.clone
-    case @coords.direction
+    case direction
     when Direction::NORTH then new_coords.y += 1
     when Direction::SOUTH then new_coords.y -= 1
     when Direction::EAST  then new_coords.x += 1
@@ -47,7 +47,7 @@ class Robot
   end
 
   def right
-    @coords.direction.next!
+    direction.next!
   end
 
   def place x, y, direction
@@ -60,5 +60,11 @@ class Robot
 
   def report
     @coords
+  end
+
+  private
+
+  def direction
+    @coords.direction
   end
 end
