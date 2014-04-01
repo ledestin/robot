@@ -11,7 +11,7 @@ class Robot
     @@table
   end
 
-  # A null object to use as robot state.
+  # Null object, to be used as robot state.
   BlackHole = Naught.build do |config|
     config.black_hole
     config.singleton
@@ -19,10 +19,13 @@ class Robot
   end
 
   def initialize
+    # Parsing of string commands is handled by StringDriver.
     @driver = StringDriver.new self
     @coords = BlackHole.instance
   end
 
+  # Execute command and return any output as a String.
+  # @command is a string command, e.g. 'REPORT'.
   def execute_command command
     @driver.execute_command command
   end
