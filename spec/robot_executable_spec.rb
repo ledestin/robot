@@ -27,7 +27,7 @@ EOF
     expect(execute_commands input).to eq output
   end
 
-  xit 'ignores all moving commands after it was placed outside of table' do
+  xit 'report prints nothing if robot is not on the table' do
     output = execute_commands <<-EOF
       PLACE -1,0,NORTH
       REPORT
