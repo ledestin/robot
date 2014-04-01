@@ -11,6 +11,7 @@ class Robot
     @@table
   end
 
+  # A null object to use as robot state.
   BlackHole = Naught.build do |config|
     config.black_hole
     config.singleton
