@@ -1,4 +1,4 @@
-require './robot'
+require './state'
 
 describe Robot::State do
   it 'handles conversion to String' do

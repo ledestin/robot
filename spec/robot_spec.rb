@@ -1,5 +1,4 @@
 require './robot'
-require './direction'
 
 describe Robot do
   it '#execute_command relays command to driver' do
