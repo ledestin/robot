@@ -15,12 +15,6 @@ class Robot
     WEST = Direction 'WEST'
     ALL = [NORTH, EAST, SOUTH, WEST].map! { |d| d.freeze }
 
-    Kernel.class_eval <<-EOF
-      def Direction direction
-	Direction::Direction direction
-      end
-    EOF
-
     def next
       case self
       when NORTH then EAST
@@ -46,5 +40,11 @@ class Robot
     def prev!
       replace self.prev
     end
+  end
+end
+
+module Kernel
+  def Direction direction
+    Robot::Direction::Direction direction
   end
 end
