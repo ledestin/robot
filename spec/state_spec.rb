@@ -1,3 +1,4 @@
+require 'spec_helper'
 require './state'
 
 describe Robot::State do

@@ -1,3 +1,4 @@
+require 'spec_helper'
 require './string_driver'
 
 describe Robot::StringDriver do
