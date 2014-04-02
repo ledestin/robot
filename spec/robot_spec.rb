@@ -105,7 +105,7 @@ describe Robot do
 
   context 'command LEFT' do
     direction = Direction 'NORTH'
-    3.times {
+    4.times {
       it "changes direction from #{direction} to #{direction.prev}" do
 	subject.place 0, 0, direction
 	subject.left
@@ -116,7 +116,7 @@ describe Robot do
 
   context 'command RIGHT' do
     direction = Direction 'NORTH'
-    3.times {
+    4.times {
       it "changes direction from #{direction} to #{direction.next}" do
 	subject.place 0, 0, direction
 	subject.right
