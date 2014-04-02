@@ -2,7 +2,7 @@ require './robot'
 require './direction'
 
 describe Robot do
-  context 'command PLACE' do
+  context '#place' do
     Robot::Direction::ALL.each { |direction|
       it "0,0,#{direction} places robot" do
 	subject.place 0, 0, direction
@@ -47,7 +47,7 @@ describe Robot do
     end
   end
 
-  context 'command MOVE' do
+  context '#move' do
     it 'increases x by 1 when moving facing east' do
       subject.place 0, 0, 'EAST'
       subject.move
@@ -103,7 +103,7 @@ describe Robot do
     end
   end
 
-  context 'command LEFT' do
+  context '#left' do
     direction = Direction 'NORTH'
     4.times {
       it "changes direction from #{direction} to #{direction.prev}" do
@@ -114,7 +114,7 @@ describe Robot do
     }
   end
 
-  context 'command RIGHT' do
+  context '#right' do
     direction = Direction 'NORTH'
     4.times {
       it "changes direction from #{direction} to #{direction.next}" do
