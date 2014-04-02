@@ -18,9 +18,8 @@ class Robot
     config.define_implicit_conversions
   end
 
-  def initialize
-    # Parsing of string commands is handled by StringDriver.
-    @driver = StringDriver.new self
+  def initialize driver_klass=StringDriver
+    @driver = driver_klass.new self
     @coords = BlackHole.instance
   end
 

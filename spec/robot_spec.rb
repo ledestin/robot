@@ -2,6 +2,15 @@ require './robot'
 require './direction'
 
 describe Robot do
+  it '#execute_command relays command to driver' do
+    command = 'NOOP'
+    driver, driver_klass = double(), double()
+    driver_klass.stub(:new) { driver }
+    expect(driver).to receive(:execute_command).with(command)
+    robot = Robot.new driver_klass
+    robot.execute_command command
+  end
+
   context '#place' do
     Robot::Direction::ALL.each { |direction|
       it "0,0,#{direction} places robot" do
