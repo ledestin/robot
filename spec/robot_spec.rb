@@ -124,4 +124,15 @@ describe Robot do
       end
     }
   end
+
+  context '#report' do
+    it "is nil if robot wasn't placed yet" do
+      expect(subject.report).to be_nil
+    end
+
+    it 'returns valid state after robot was placed' do
+      subject.place 0, 0, 'NORTH'
+      expect(subject.report).to eq Robot::State.new(0, 0, 'NORTH')
+    end
+  end
 end
