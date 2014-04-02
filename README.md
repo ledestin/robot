@@ -1,6 +1,10 @@
 Toy Robot Simulator
 =====
 
+[![Build Status](https://travis-ci.org/ledestin/robot.png)](https://travis-ci.org/ledestin/robot)
+[![Coverage Status] (https://coveralls.io/repos/ledestin/robot/badge.png)] (https://coveralls.io/r/ledestin/robot)
+[![Code Climate](https://codeclimate.com/github/ledestin/robot.png)](https://codeclimate.com/github/ledestin/robot)
+
 ## Installation
 
 ```
