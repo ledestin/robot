@@ -1,12 +1,20 @@
 class Robot
-  class Direction < String
+  class Direction
     ALL_STR = %w(NORTH EAST SOUTH WEST)
 
     def self.Direction direction
+      return direction if direction.is_a? Direction
+
       raise ArgumentError, "#{direction}: unknown direction" \
 	unless ALL_STR.include? direction
 
       Direction.new direction
+    end
+
+    attr_reader :name
+
+    def initialize name
+      @name = name
     end
 
     NORTH = Direction 'NORTH'
@@ -14,6 +22,10 @@ class Robot
     SOUTH = Direction 'SOUTH'
     WEST = Direction 'WEST'
     ALL = [NORTH, EAST, SOUTH, WEST].map! { |d| d.freeze }
+
+    def == other
+      @name == other.name
+    end
 
     def next
       case self
@@ -25,7 +37,8 @@ class Robot
     end
 
     def next!
-      replace self.next
+      @name = self.next.name
+      self
     end
 
     def prev
@@ -38,7 +51,12 @@ class Robot
     end
 
     def prev!
-      replace self.prev
+      @name = prev.name
+      self
+    end
+
+    def to_s
+      @name
     end
   end
 end
