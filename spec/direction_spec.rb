@@ -56,5 +56,15 @@ describe Robot::Direction do
 	expect { direction.next! }.to raise_error
       }
     end
+
+    it '#prev!' do
+      Robot::Direction::ALL.each { |direction|
+	expect { direction.prev! }.to raise_error
+      }
+    end
+  end
+
+  it '#to_s returns string representing direction' do
+    expect(Robot::Direction::NORTH.to_s).to eq 'NORTH'
   end
 end
