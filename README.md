@@ -9,6 +9,7 @@ Toy Robot Simulator
 
 ```
 git clone https://github.com/ledestin/robot.git
+cd robot
 bundle
 ```
 
