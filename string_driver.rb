@@ -10,8 +10,8 @@ class Robot
       command, arguments = parse_command command
       return unless supported_command? command, arguments
 
-      ret = @robot.send(command.downcase, *arguments)
-      process_result command, ret
+      result = @robot.send(command.downcase, *arguments)
+      process_result command, result
     end
 
     private
