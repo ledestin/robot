@@ -1,3 +1,5 @@
+require './direction'
+
 class Robot
   State = Struct.new(:x, :y, :direction) do
     def initialize x, y, direction
