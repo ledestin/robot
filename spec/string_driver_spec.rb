@@ -31,11 +31,6 @@ describe Robot::StringDriver do
     }
   end
 
-  it "#execute_command 'REPORT' returns value returned by robot" do
-    allow(@robot).to receive(:report) { 'result' }
-    expect(@driver.execute_command 'REPORT').not_to eq nil
-  end
-
   context 'PLACE command requires 3 arguments to be passed to robot,' do
     it 'is passed to robot when given 3 arguments' do
       allow(@robot).to receive(:place)
@@ -75,6 +70,11 @@ describe Robot::StringDriver do
   end
 
   context "#execute_command 'REPORT'" do
+    it 'returns string returned by robot' do
+      allow(@robot).to receive(:report) { 'result' }
+      expect(@driver.execute_command 'REPORT').to eq 'result'
+    end
+
     it 'converts non-nil returned value of robot#report to a string' do
       allow(@robot).to receive(:report) { 42 }
       expect(@driver.execute_command 'REPORT').to eq '42'
