@@ -50,10 +50,10 @@ class Robot
   end
 
   def place x, y, direction
-    x, y, direction = Integer(x), Integer(y), Direction(direction)
-    return unless @@table.contain? x, y
+    new_coords = State.new(x, y, direction)
+    return unless @@table.contain? new_coords.x, new_coords.y
 
-    @coords = State.new(x, y, direction)
+    @coords = new_coords
   rescue ArgumentError
   end
 
