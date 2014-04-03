@@ -7,12 +7,14 @@ describe Robot::StringDriver do
     @driver = Robot::StringDriver.new @robot
   end
 
-  (Robot::StringDriver::SUPPORTED_COMMANDS - ['PLACE']).each { |command|
-    it "#{command} command calls corresponding robot method" do
-      expect(@robot).to receive(command.downcase)
-      @driver.execute_command command
-    end
-  }
+  context '#execute_command(command) calls corresponding robot method' do
+    (Robot::StringDriver::SUPPORTED_COMMANDS - ['PLACE']).each { |command|
+      it "(#{command})" do
+	expect(@robot).to receive(command.downcase)
+	@driver.execute_command command
+      end
+    }
+  end
 
   it 'not supported commands are not called on robot' do
     command = 'JUMP'
@@ -66,7 +68,7 @@ describe Robot::StringDriver do
       @driver.execute_command "\t\n MOVE\n\t "
     end
 
-    it '(has whitespace in arguments)' do
+    it '(whitespace in arguments)' do
       expect(@robot).to receive(:place)
       @driver.execute_command "PLACE 0,\t0\t,\n   NORTH"
     end
