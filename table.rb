@@ -1,5 +1,3 @@
-require './direction'
-
 class Robot
   class Table
     attr_reader :width, :height
