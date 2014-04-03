@@ -5,15 +5,15 @@ class Robot
     def self.Direction direction
       return direction if direction.is_a? Direction
 
-      raise ArgumentError, "#{direction}: unknown direction" \
-	unless ALL_STR.include? direction
-
       Direction.new direction
     end
 
     attr_reader :name
 
     def initialize name
+      raise ArgumentError, "#{name}: unknown direction" \
+	unless ALL_STR.include? name
+
       @name = name
     end
 

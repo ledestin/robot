@@ -6,10 +6,18 @@ describe Robot::Direction do
     it "Direction() succesfully accepts #{direction}" do
       expect { Direction(direction) }.not_to raise_error
     end
+
+    it "constructor succesfully accepts #{direction}" do
+      expect { Robot::Direction.new direction }.not_to raise_error
+    end
   }
 
   it 'Direction() raises ArgumentError if passed unknown direction' do
     expect { Direction('INVALID') }.to raise_error ArgumentError
+  end
+
+  it 'Direction.new raises ArgumentError if passed unknown direction' do
+    expect { Robot::Direction.new('INVALID') }.to raise_error ArgumentError
   end
 
   direction_states = [
