@@ -1,4 +1,5 @@
 class Robot
+  # Accept string commands via #execute_command and pass to a robot instance.
   class StringDriver
     SUPPORTED_COMMANDS = %w(PLACE MOVE LEFT RIGHT REPORT)
 
