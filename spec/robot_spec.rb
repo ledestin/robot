@@ -67,28 +67,30 @@ describe Robot do
   end
 
   context '#move' do
-    it 'increases x by 1 when moving facing east' do
-      subject.place 0, 0, 'EAST'
-      subject.move
-      expect(subject.report.to_s).to eq '1,0,EAST'
-    end
+    context 'successfully' do
+      it 'increases x by 1 when moving facing east' do
+	subject.place 0, 0, 'EAST'
+	subject.move
+	expect(subject.report.to_s).to eq '1,0,EAST'
+      end
 
-    it 'increases y by 1 when moving facing north' do
-      subject.place 0, 0, 'NORTH'
-      subject.move
-      expect(subject.report.to_s).to eq '0,1,NORTH'
-    end
+      it 'increases y by 1 when moving facing north' do
+	subject.place 0, 0, 'NORTH'
+	subject.move
+	expect(subject.report.to_s).to eq '0,1,NORTH'
+      end
 
-    it 'decreases x by 1 when moving facing west' do
-      subject.place 1, 0, 'WEST'
-      subject.move
-      expect(subject.report.to_s).to eq '0,0,WEST'
-    end
+      it 'decreases x by 1 when moving facing west' do
+	subject.place 1, 0, 'WEST'
+	subject.move
+	expect(subject.report.to_s).to eq '0,0,WEST'
+      end
 
-    it 'decreases y by 1 when moving facing south' do
-      subject.place 0, 1, 'SOUTH'
-      subject.move
-      expect(subject.report.to_s).to eq '0,0,SOUTH'
+      it 'decreases y by 1 when moving facing south' do
+	subject.place 0, 1, 'SOUTH'
+	subject.move
+	expect(subject.report.to_s).to eq '0,0,SOUTH'
+      end
     end
 
     context 'is ignored if it would get robot outside of the table' do
