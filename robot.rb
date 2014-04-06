@@ -54,7 +54,7 @@ class Robot
     return unless @@table.contain? new_coords.x, new_coords.y
 
     @coords = new_coords
-  rescue ArgumentError
+  rescue StateArgumentError
   end
 
   def report
