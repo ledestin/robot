@@ -38,26 +38,20 @@ describe Robot do
 
     context 'is ignored when placing robot outside table' do
       context '(x equals' do
-	it "#{Robot.table.width})" do
-	  subject.place Robot.table.width, 0, 'NORTH'
-	  expect(subject.report).to be_nil
-	end
-
-	it '-1)' do
-	  subject.place -1, 0, 'NORTH'
-	  expect(subject.report).to be_nil
+	[Robot.table.width, -1].each do |x|
+	  it "#{x})" do
+	    subject.place x, 0, 'NORTH'
+	    expect(subject.report).to be_nil
+	  end
 	end
       end
 
       context '(y equals' do
-	it "#{Robot.table.height})" do
-	  subject.place 0, Robot.table.height, 'NORTH'
-	  expect(subject.report).to be_nil
-	end
-
-	it '-1)' do
-	  subject.place 0, -1, 'NORTH'
-	  expect(subject.report).to be_nil
+	[Robot.table.height, -1].each do |y|
+	  it "#{y})" do
+	    subject.place 0, y, 'NORTH'
+	    expect(subject.report).to be_nil
+	  end
 	end
       end
     end
