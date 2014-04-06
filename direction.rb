@@ -37,8 +37,7 @@ class Robot
     end
 
     def next!
-      @name = self.next.name
-      self
+      replace self.next
     end
 
     def prev
@@ -51,12 +50,18 @@ class Robot
     end
 
     def prev!
-      @name = prev.name
-      self
+      replace prev
     end
 
     def to_s
       @name
+    end
+
+    private
+
+    def replace other
+      @name = other.name
+      self
     end
   end
 end
