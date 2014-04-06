@@ -12,12 +12,14 @@ describe Robot do
   end
 
   context '#place' do
-    Robot::Direction::ALL.each { |direction|
-      it "0,0,#{direction} places robot" do
-	subject.place 0, 0, direction
-	expect(subject.report.to_s).to eq "0,0,#{direction}"
-      end
-    }
+    context 'is valid, places robot at' do
+      Robot::Direction::ALL.each { |direction|
+	it "0,0,#{direction}" do
+	  subject.place 0, 0, direction
+	  expect(subject.report.to_s).to eq "0,0,#{direction}"
+	end
+      }
+    end
 
     context 'is ignored when given invalid' do
       it 'x' do
