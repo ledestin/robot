@@ -26,8 +26,8 @@ class Robot
 
     def process_result command, result
       return unless command == 'REPORT'
-      return result if result.nil?
 
+      return if result.nil?
       result.to_s
     end
 
