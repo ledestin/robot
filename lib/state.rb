@@ -1,4 +1,4 @@
-require './direction'
+require './lib/direction'
 
 class Robot
   class StateArgumentError < ArgumentError; end

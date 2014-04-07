@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './table'
+require './lib/table'
 
 describe Robot::Table do
   before :all do

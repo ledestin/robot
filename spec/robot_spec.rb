@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './robot'
+require './lib/robot'
 
 describe Robot do
   it '#execute_command relays command to driver' do

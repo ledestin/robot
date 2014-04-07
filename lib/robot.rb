@@ -1,8 +1,8 @@
 require 'naught'
-require './direction'
-require './string_driver'
-require './state'
-require './table'
+require './lib/direction'
+require './lib/string_driver'
+require './lib/state'
+require './lib/table'
 
 class Robot
   @@table = Table.new 5, 5

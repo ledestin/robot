@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './state'
+require './lib/state'
 
 describe Robot::State do
   it 'handles conversion to String' do

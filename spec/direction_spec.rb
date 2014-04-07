@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './direction'
+require './lib/direction'
 
 describe Robot::Direction do
   %w(NORTH EAST SOUTH WEST).each { |direction|

@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './string_driver'
+require './lib/string_driver'
 
 describe Robot::StringDriver do
   before :each do

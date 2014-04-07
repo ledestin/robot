@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './robot'
+require './lib/robot'
 
 robot = Robot.new
 $stdin.each_line { |line|
