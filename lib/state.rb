@@ -1,14 +1,14 @@
 require './lib/direction'
 
 class Robot
-  class StateArgumentError < ArgumentError; end
+  class State < Struct.new(:x, :y, :direction)
+    class ArgumentError < ::ArgumentError; end
 
-  State = Struct.new(:x, :y, :direction) do
     def initialize x, y, direction
       self.x, self.y, self.direction =
 	Integer(x), Integer(y), Direction(direction)
-    rescue ArgumentError
-      raise StateArgumentError, $!.message
+    rescue ::ArgumentError
+      raise ArgumentError, $!.message
     end
 
     def to_s
