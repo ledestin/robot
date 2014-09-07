@@ -2,15 +2,15 @@ require 'forwardable'
 
 class Robot
   class Direction
-    Data = Struct.new(:delta_x, :delta_y)
+    Data = Struct.new(:prev_name, :next_name, :delta_x, :delta_y)
 
     extend Forwardable
 
     DATA = {
-      'NORTH' => Data.new(0, 1),
-      'EAST' => Data.new(1, 0),
-      'SOUTH' => Data.new(0, -1),
-      'WEST' => Data.new(-1, 0)
+      'NORTH' => Data.new('WEST', 'EAST', 0, 1),
+      'EAST' => Data.new('NORTH', 'SOUTH', 1, 0),
+      'SOUTH' => Data.new('EAST', 'WEST', 0, -1),
+      'WEST' => Data.new('SOUTH', 'NORTH', -1, 0)
     }.freeze
 
     def self.Direction direction
@@ -20,7 +20,7 @@ class Robot
     end
 
     attr_reader :name
-    def_delegators :@data, :delta_x, :delta_y
+    def_delegators :@data, :prev_name, :next_name, :delta_x, :delta_y
 
     def initialize name
       replace name
@@ -31,12 +31,7 @@ class Robot
     end
 
     def next
-      case self
-      when NORTH then EAST
-      when EAST then SOUTH
-      when SOUTH then WEST
-      when WEST then NORTH
-      end
+      self.class.const_get next_name
     end
 
     def next!
@@ -44,12 +39,7 @@ class Robot
     end
 
     def prev
-      case self
-      when NORTH then WEST
-      when WEST then SOUTH
-      when SOUTH then EAST
-      when EAST then NORTH
-      end
+      self.class.const_get prev_name
     end
 
     def prev!
