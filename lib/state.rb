@@ -11,6 +11,11 @@ class Robot
       raise ArgumentError, $!.message
     end
 
+    def step!
+      self.x += direction.delta_x
+      self.y += direction.delta_y
+    end
+
     def to_s
       [x, y, direction].join ','
     end

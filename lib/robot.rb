@@ -35,8 +35,7 @@ class Robot
 
   def move
     new_coords = @coords.clone
-    new_coords.x += direction.delta_x
-    new_coords.y += direction.delta_y
+    new_coords.step!
     @coords = new_coords if @@table.contain?(new_coords.x, new_coords.y)
   end
 
