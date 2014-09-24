@@ -2,15 +2,15 @@ require 'forwardable'
 
 class Robot
   class Direction
-    Data = Struct.new(:prev_name, :next_name, :delta_x, :delta_y)
+    Definition = Struct.new(:prev_name, :next_name, :delta_x, :delta_y)
 
     extend Forwardable
 
-    DATA = {
-      'NORTH' => Data.new('WEST', 'EAST', 0, 1),
-      'EAST' => Data.new('NORTH', 'SOUTH', 1, 0),
-      'SOUTH' => Data.new('EAST', 'WEST', 0, -1),
-      'WEST' => Data.new('SOUTH', 'NORTH', -1, 0)
+    DEFINITIONS = {
+      'NORTH' => Definition.new('WEST', 'EAST', 0, 1),
+      'EAST' => Definition.new('NORTH', 'SOUTH', 1, 0),
+      'SOUTH' => Definition.new('EAST', 'WEST', 0, -1),
+      'WEST' => Definition.new('SOUTH', 'NORTH', -1, 0)
     }.freeze
 
     def self.Direction direction
@@ -55,9 +55,9 @@ class Robot
     def replace other
       name = other.is_a?(String) ? other : other.name
       raise ArgumentError, "#{name}: unknown direction" \
-	unless DATA.has_key? name
+	unless DEFINITIONS.has_key? name
 
-      @name, @data = name, DATA[name]
+      @name, @data = name, DEFINITIONS[name]
       self
     end
 
